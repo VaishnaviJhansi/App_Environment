@@ -124,7 +124,7 @@ function GetUser() {
   //   const [isSave, setIsSave] = useState(false);
 
   const handleSubmit = async (e) => {
-    // e.preventDefault();
+    e.preventDefault();
     try {
       const response = await axios.post("http://127.0.0.1:5000/view", {
         Appln_Name,
@@ -142,7 +142,8 @@ function GetUser() {
     handleSubmit();
   }, []);
 
-  const paperStyle={padding :0,height:'85vh',width:550,margin:"5px auto", overflow: "auto"}
+  // const paperStyle={padding :0,height:'85vh',width:550,margin:"5px auto", overflow: "auto"}
+  const paperStyle={padding :20,height:'85vh',width:550,margin:"5px auto", overflow: "auto",marginTop: "3vh"}
 
   return (
     //     <>

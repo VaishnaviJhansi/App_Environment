@@ -4,6 +4,7 @@ import { useNavigate, useParams } from "react-router-dom";
 
 export default function CreateUser () {
     const navigate = useNavigate();
+    
     const [inputs, setInputs] = useState([{
         "Appln_Name":"",
         "Sl":"",
@@ -28,7 +29,7 @@ export default function CreateUser () {
     function getUser() {
       axios.get(`http://127.0.0.1:5000/api/data/${Appln_Name}`).then(function (response) {
         console.log(response.data);
-        setInputs(response.data);
+        // setInputs(response.data);
       });
     }
   

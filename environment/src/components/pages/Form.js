@@ -13,7 +13,7 @@ import { Card, CardContent } from "@material-ui/core";
 
 function Form() {
 
-  const [Appln, setAppln] = useState('');
+  const [appln, setAppln] = useState('');
   const [Sl, setSl] = useState('');
   const [Env_Level, setEnv_Level] = useState('');
   const [Infrastructure, setInfrastructure] = useState('');
@@ -30,13 +30,16 @@ function Form() {
     e.preventDefault();
     try {
      const response = await axios.post('http://127.0.0.1:5000/post', 
-        { Appln, Sl, Env_Level, Infrastructure, Infra_Type, Server_Name, Location, Updated_By, Updated_on, Inserted_by, Inserted_On });
+        { appln, Sl, Env_Level, Infrastructure, Infra_Type, Server_Name, Location, Updated_By, Updated_on, Inserted_by, Inserted_On });
      setGreeting(response.data.greeting);
     } catch (error) {
       console.error('Error:', error);
     } 
   };
-
+  
+  const HandleSave=()=>{
+    alert("Data Updated Successfully")
+  };
 
   const paperStyle={padding :0,height:'85vh',width:550,margin:"5px auto", overflow: "auto"}
 //   const btnstyle={margin:'8px 0'}
@@ -44,7 +47,8 @@ function Form() {
   return (
     <>
     {/* <Box sx={{ display: 'flex', flexDirection: 'row', border: 0.5, borderColor: "text.secondary" }} /> */}
-    <Box p={0} sx={{ display: 'flex', flexDirection: 'column' }} >
+    {/* <Box p={0} sx={{ display: 'flex', flexDirection: 'column' }} > */}
+    <Box p={2} sx={{ display: 'flex', flexDirection: 'column' }} >
     <Paper elevation={10} style={paperStyle} sx={{ width: '100%', overflow: 'hidden'}}> 
       <Container component="main" maxWidth="xs">
         <CssBaseline />
@@ -76,8 +80,8 @@ function Form() {
                 <TextField
                   autoComplete="given-name"
                   type="text"
-                  name="appln_name"
-                  value={Appln}
+                  name="Appln_Name"
+                  value={appln}
                   placeholder="Appln_Name" 
                   required
                   fullWidth
@@ -299,6 +303,7 @@ function Form() {
               fullWidth
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
+              onClick={HandleSave}
             >
               Submit
             </Button>

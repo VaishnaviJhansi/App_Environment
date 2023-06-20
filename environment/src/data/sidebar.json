@@ -1,0 +1,28 @@
+[
+    {
+        "title": "General",
+        "icon": "bi-gear-fill",
+        "childrens": [
+            {
+                "path":"/",
+                "title":"Form",
+                "icon":"bi-app"
+            },
+            {
+                "path":"/Home",
+                "title":"Home",                
+                "icon":"bi-house-fill"
+            },
+            {
+                "path":"/GetUser",
+                "title":"GetUser",
+                "icon":"bi-person"
+            },
+            {
+                "path":"/EditUser",
+                "title":"EditUser",
+                "icon":"bi-person-fill"
+            }
+        ]
+    }
+]

@@ -111,6 +111,43 @@ mysql = MySQL(app)
 
 cursor = mydb.cursor() 
 
+
+@app.route('/delete/<Appln_Name>', methods=['DELETE'])
+
+def delete_data(Appln_Name):
+    # Delete data from the database
+    query = "DELETE FROM Environment_Details WHERE Appln_Name = %s"
+    cursor.execute(query, (Appln_Name,))
+    mydb.commit()
+    return jsonify({'message': 'Data deleted successfully'})
+
+
+@app.route('/delete', methods=['PUT'])
+
+def delete():
+
+    Appln = request.json['Appln_Name']
+    Sl = request.json['Sl']
+    Env_Level = request.json['Env_Level']
+    Infrastructure = request.json['Infrastructure']
+    Infra_Type = request.json['Infra_Type']
+    Server_Name = request.json['Server_Name']
+    Location = request.json['Location']
+    Updated_By = request.json['Updated_By']
+    Updated_on = request.json['Updated_on']
+    Inserted_by = request.json['Inserted_by']
+    Inserted_On = request.json['Inserted_On']  
+
+
+    sqlQuery='''DELETE Environment_Details SET Sl=%s, Env_Level=%s, Infrastructure=%s, Infra_Type=%s, Server_Name=%s, Location=%s, Updated_By=%s, Updated_on=%s, Inserted_by=%s, Inserted_On=%s where Appln_Name=%s '''
+    cursor = mydb.cursor() 
+    cursor.execute(sqlQuery,[Sl, Env_Level, Infrastructure, Infra_Type, Server_Name, Location, Updated_By, Updated_on, Inserted_by, Inserted_On, Appln])
+    mydb.commit()
+    return jsonify("data deleted successfully")
+
+
+
+
 @app.route('/update/<Appln_Name>', methods=['PUT'])
 
 def update(Appln_Name):
@@ -157,14 +194,14 @@ def viewall2(Appln_Name):
 
 
 
-@app.route('/api/data/<Name>', methods=['GET'])
+@app.route('/api/data/<Appln_Name>', methods=['GET'])
 
-def get_data(Name):
+def get_data(Appln_Name):
 
     # Retrieve data for a specific ID from the database
     # Cursor = mydb.cursor(dictionary=True)
     query = "select * from Environment_Details WHERE Appln_Name= %s"
-    cursor.execute(query,[Name])
+    cursor.execute(query,[Appln_Name])
     data = cursor.fetchone()
     print("Data:",data)
     if data:
